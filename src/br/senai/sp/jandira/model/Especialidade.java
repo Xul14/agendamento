@@ -18,8 +18,9 @@ public class Especialidade {
 	}
 	
 	public Especialidade() {
-		
+		//Contrutor default.
 	}
+	
 	
 	//Métodos de acessos aos atributos
 	

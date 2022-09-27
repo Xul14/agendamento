@@ -8,6 +8,17 @@ public class PlanoDeSaude {
 	private String categoria;
 	private String numero;
 	private LocalDate validade;
+	private static int quantidade;
+	
+	public PlanoDeSaude(String operadora) {
+		this.operadora = operadora;
+		this.quantidade++;
+	}
+	
+	public PlanoDeSaude() {
+		this.quantidade++;	
+	}
+	
 	
 	//Métodos de acessos aos atributos
 	
@@ -43,6 +54,9 @@ public class PlanoDeSaude {
 		return validade;
 	}
 	
+	public static int getQuantidade() {
+		return quantidade;
+	}
 	
 	
 }

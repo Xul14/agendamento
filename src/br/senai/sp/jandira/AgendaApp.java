@@ -99,7 +99,7 @@ public class AgendaApp {
 		endereco2.setlogradouro("Avenida São João");
 		
 		//Planos de saúde
-		
+//		
 		PlanoDeSaude plano1 = new PlanoDeSaude();
 		plano1.setCategoria("Basic");
 		plano1.setNumero("0667-57");
@@ -111,9 +111,9 @@ public class AgendaApp {
 		plano2.setNumero("9717-62");
 		plano2.setOperadora("Unimed");
 		plano2.setValidade(LocalDate.of(2022, 12, 15));
-		
-		//Paciente
-		
+//		
+//		//Paciente
+//		
 		Paciente paciente1 = new Paciente();
 		paciente1.setNome("Lekiçamdro Gomes");
 		paciente1.setRg("7563834-0");
@@ -151,8 +151,8 @@ public class AgendaApp {
 		System.out.println("Cidade: " + paciente2.getEndereco().getcidade());
 		System.out.println("Estado: " + paciente2.getEndereco().getEstado());
 		System.out.println("Plano de saúde: " + paciente2.getPlanoDeSaude().getOperadora());
-		
-		//Agendar para o paciente 1 uma consulta
+//		
+//		//Agendar para o paciente 1 uma consulta
 		
 		Agenda agendamento1 = new Agenda();
 		agendamento1.setPaciente(paciente1);

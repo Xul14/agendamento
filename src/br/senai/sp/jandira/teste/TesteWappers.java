@@ -8,12 +8,12 @@ public class TesteWappers {
 
 	public static void main(String[] args) {
 		
-//		int a = 5;
-//		
-//		Integer b = 5;
-//		
-//		Double x = 2.9;
-//		
+		int a = 5;
+		
+		Integer b = 5;
+		
+		Double x = 2.9;
+		
 		ArrayList<Especialidade> especialidades = new ArrayList<>();
 		
 		Especialidade e1 = new Especialidade("Cardiologia");
