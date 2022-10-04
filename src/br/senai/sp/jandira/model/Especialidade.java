@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 public class Especialidade {
 
     private Integer codigo;
-    private static int contador;
+    private static int contador = 99;
     private String nome;
     private String descricao;
 
@@ -35,8 +35,10 @@ public class Especialidade {
     public Integer getCodigo() {
         return codigo;
     }
-    
-    
+
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
+    }
     
     
     public void setNome(String nome) {

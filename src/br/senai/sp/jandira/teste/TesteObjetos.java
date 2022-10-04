@@ -3,6 +3,7 @@ package br.senai.sp.jandira.teste;
 import java.util.ArrayList;
 
 import br.senai.sp.jandira.AgendaApp;
+import br.senai.sp.jandira.dao.EspecialidadeDAO;
 
 //import javax.swing.JOptionPane;
 
@@ -20,13 +21,16 @@ public class TesteObjetos {
 		Especialidade e2 = new Especialidade();
 		e2.setNome("Gastro");
 		e2.setDescricao("Cuida do sistema digestivo");
+                
+                Especialidade e3 = new Especialidade();
+		e3.setNome("Qualquer coisa!");
+                e3.setDescricao("Parte da medicina que estuda doenças da pele");
 		
 		Especialidade e4 = new Especialidade("Otorrino", "Cuida do ouvido");
+                Especialidade e5 = new Especialidade("Especialidade 5!");
+                
 		
 //		JOptionPane.showMessageDialog(null, e1.getNome());
-		
-		Especialidade e3 = e1;
-//		e3.setNome("Qualquer coisa!");
 		
 //		JOptionPane.showMessageDialog(null, e1.getNome());
 		
@@ -35,6 +39,30 @@ public class TesteObjetos {
 		especialidades.add(e2);
 		especialidades.add(e3);
 		System.out.println(especialidades.size());
+                
+                EspecialidadeDAO.gravar(e1);
+                EspecialidadeDAO.gravar(e2);
+                
+                System.out.println("Tamanho ----> " +EspecialidadeDAO.getEspecialidades().size());
+                
+                EspecialidadeDAO.gravar(e3);
+                EspecialidadeDAO.gravar(e4);
+                
+                System.out.println("Tamanho ----> " +EspecialidadeDAO.getEspecialidades().size());
+                
+                System.out.println(EspecialidadeDAO.getEspecialidade(101).getNome());
+                
+                EspecialidadeDAO.exclui(102);
+                System.out.println("Tamanho ----> " +EspecialidadeDAO.getEspecialidades().size());
+                
+                System.out.println(EspecialidadeDAO.getEspecialidade(102).getNome());
+                
+                Especialidade correta = new Especialidade("Dermatologia", "Parte da medicina que cuida da pele");
+                correta.setCodigo(e3.getCodigo());
+                EspecialidadeDAO.atualizar(correta);
+                System.out.println(EspecialidadeDAO.getEspecialidade(102).getNome());
+                
+                
 		
 		//Imprimir no console o nome das especialidades do ArrayList
 		
