@@ -13,6 +13,30 @@ import br.senai.sp.jandira.model.PlanoDeSaude;
 public class TesteObjetos {
 
 	public static void main(String[] args) {
+            
+            int[] a = {6, 9, 78, 90, 23, 55};
+            int[] b = new int[4];
+            b[0] = 55;
+            b[1] = 55;
+            b[2] = 11;
+            b[3] = 99;
+            
+            int[][] c = { 
+                {4,6,5},
+                {5,9,6}, 
+                {1,13,3}
+            };
+            
+            String[][] quitanda = {
+                {"banana", "maçã", "uva", "morango"},
+                {"Alface", "couve", "salsinha", "pimentão","pepino"},
+                {"Tomate", "Abacate", "Abobrinha"}
+            };
+            
+            System.out.println(c[2][1]);
+            System.out.println(quitanda[1][4]);
+            
+            System.out.println("*****************************************************");
 		
 		Especialidade e1 = new Especialidade("Cardiologia");
 //		e1.setNome("Cardiologista");
