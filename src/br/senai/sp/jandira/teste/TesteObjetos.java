@@ -76,7 +76,7 @@ public class TesteObjetos {
                 
                 System.out.println(EspecialidadeDAO.getEspecialidade(101).getNome());
                 
-                EspecialidadeDAO.exclui(102);
+                EspecialidadeDAO.excluir(102);
                 System.out.println("Tamanho ----> " +EspecialidadeDAO.getEspecialidades().size());
                 
                 System.out.println(EspecialidadeDAO.getEspecialidade(102).getNome());

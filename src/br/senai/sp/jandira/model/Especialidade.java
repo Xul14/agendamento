@@ -17,6 +17,8 @@ public class Especialidade {
     }
 
     public Especialidade(String nome, String descricao) {
+        this.nome = nome;
+        this.descricao = descricao;
         this.contador++;
         this.codigo = contador;
     }

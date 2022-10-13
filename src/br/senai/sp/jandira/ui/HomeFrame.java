@@ -145,18 +145,18 @@ public class HomeFrame extends javax.swing.JFrame {
 
         buttonSair.setBackground(new java.awt.Color(204, 204, 255));
         buttonSair.setFont(new java.awt.Font("Consolas", 0, 16)); // NOI18N
-        buttonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/x-mark.png"))); // NOI18N
+        buttonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/logout.png"))); // NOI18N
         buttonSair.setText("Sair");
         buttonSair.setToolTipText("Sair");
         buttonSair.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(buttonSair);
-        buttonSair.setBounds(740, 100, 110, 40);
+        buttonSair.setBounds(730, 120, 100, 40);
 
         panelHome.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         panelHome.setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Consolas", 1, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(102, 102, 255));
+        jLabel2.setForeground(new java.awt.Color(153, 51, 255));
         jLabel2.setText("SISACON");
         panelHome.add(jLabel2);
         jLabel2.setBounds(30, 90, 220, 50);
@@ -186,7 +186,7 @@ public class HomeFrame extends javax.swing.JFrame {
         panelHome.add(jLabel7);
         jLabel7.setBounds(450, 240, 170, 15);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel1.setBackground(new java.awt.Color(153, 51, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
