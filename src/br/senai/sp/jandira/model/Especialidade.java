@@ -12,18 +12,20 @@ public class Especialidade {
     //construtor
     public Especialidade(String nome) {
         this.nome = nome;
-        this.contador++;
-        this.codigo = contador;
+        gerarCodigo();
     }
 
     public Especialidade(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
-        this.contador++;
-        this.codigo = contador;
+        gerarCodigo();
     }
 
     public Especialidade() { //Contrutor default.
+        gerarCodigo();
+    }
+    
+    private void gerarCodigo(){
         this.contador++;
         this.codigo = contador;
     }
