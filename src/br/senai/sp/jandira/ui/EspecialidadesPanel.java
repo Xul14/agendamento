@@ -2,6 +2,7 @@ package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.EspecialidadeDAO;
 import br.senai.sp.jandira.model.Especialidade;
+import br.senai.sp.jandira.model.OperacaoEnum;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -34,7 +35,7 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(800, 400));
         setLayout(null);
 
-        tableEspecialidades.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        tableEspecialidades.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tableEspecialidades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -76,7 +77,7 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
         buttonEditar.setBounds(630, 340, 50, 40);
 
         buttonAdicionar.setBackground(new java.awt.Color(204, 204, 255));
-        buttonAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/plus (1).png"))); // NOI18N
+        buttonAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/plus.png"))); // NOI18N
         buttonAdicionar.setToolTipText("Adicionar");
         buttonAdicionar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         buttonAdicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +105,7 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
        
         Especialidade especialidade = EspecialidadeDAO.getEspecialidade(getCodigo());
         
-        EspecialidadeDialog especialidadeDialog = new EspecialidadeDialog(null, true, especialidade);
+        EspecialidadeDialog especialidadeDialog = new EspecialidadeDialog(null, true, especialidade, OperacaoEnum.EDITAR);
         especialidadeDialog.setVisible(true);
         preencherTabela(); 
     }
@@ -126,7 +127,7 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
     
     private void buttonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarActionPerformed
         
-        EspecialidadeDialog especialidadeDialog = new EspecialidadeDialog(null, true);
+        EspecialidadeDialog especialidadeDialog = new EspecialidadeDialog(null, true, OperacaoEnum.ADICIONAR);
         especialidadeDialog.setVisible(true);
         preencherTabela();
     }//GEN-LAST:event_buttonAdicionarActionPerformed
@@ -179,6 +180,7 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
         tableEspecialidades.getColumnModel().getColumn(0).setPreferredWidth(100);
         tableEspecialidades.getColumnModel().getColumn(1).setPreferredWidth(200);
         tableEspecialidades.getColumnModel().getColumn(2).setPreferredWidth(429);
+       
         
     }
 
