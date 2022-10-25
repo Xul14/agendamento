@@ -24,10 +24,12 @@ public class PlanoDeSaude {
         
         public PlanoDeSaude(String operadora,
                 String categoria,
-                String numero){
+                String numero,
+                LocalDate validade){
             this.operadora = operadora;
             this.categoria = categoria;
             this.numero = numero;
+            this.validade = validade;
             gerarCodigo();
         }
 	

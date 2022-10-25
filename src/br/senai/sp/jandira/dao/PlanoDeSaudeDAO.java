@@ -1,8 +1,9 @@
 package br.senai.sp.jandira.dao;
 
 import br.senai.sp.jandira.model.PlanoDeSaude;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -51,13 +52,13 @@ public class PlanoDeSaudeDAO {
     
     public static void criarPlanosDeSaude(){
         
-        PlanoDeSaude p1 = new PlanoDeSaude("Porto Seguro", "Basic", "6451-01");
-        PlanoDeSaude p2 = new PlanoDeSaude("Unimed", "Basic", "7563-89");
-        PlanoDeSaude p3 = new PlanoDeSaude("Notredame", "classic", "8946-16");
-        PlanoDeSaude p4 = new PlanoDeSaude("Bradesco", "gold", "4697-12");
-        PlanoDeSaude p5 = new PlanoDeSaude("Cedime", "Basic", "3164-78");
-        PlanoDeSaude p6 = new PlanoDeSaude("Unimed", "premium", "5094-67");
-        PlanoDeSaude p7 = new PlanoDeSaude("Amil", "Basic", "2106-64");
+        PlanoDeSaude p1 = new PlanoDeSaude("Porto Seguro", "Basic", "6451-01", LocalDate.of(2022, 10, 22));
+        PlanoDeSaude p2 = new PlanoDeSaude("Unimed", "Basic", "7563-89",LocalDate.of(2022, 10, 22) );
+        PlanoDeSaude p3 = new PlanoDeSaude("Notredame", "Classic", "8946-16", LocalDate.of(2022, 10, 22));
+        PlanoDeSaude p4 = new PlanoDeSaude("Bradesco", "Gold", "4697-12", LocalDate.of(2022, 10, 22));
+        PlanoDeSaude p5 = new PlanoDeSaude("Cedime", "Basic", "3164-78", LocalDate.of(2022, 10, 22));
+        PlanoDeSaude p6 = new PlanoDeSaude("Unimed", "Premium", "5094-67", LocalDate.of(2022, 10, 22));
+        PlanoDeSaude p7 = new PlanoDeSaude("Amil", "Basic", "2106-64", LocalDate.of(2022, 10, 22));
         
         planoDeSaude.add(p1);
         planoDeSaude.add(p2);
@@ -71,8 +72,8 @@ public class PlanoDeSaudeDAO {
     
     public static DefaultTableModel getPlanoDeSaudeModel(){
         
-        String[] titulos = {"CÓDIGO","OPERADORA", "CATEGORIA", "NÚMERO"};
-        String[][] planos = new String[planoDeSaude.size()][4];
+        String[] titulos = {"CÓDIGO","OPERADORA", "CATEGORIA", "NÚMERO", "VALIDADE"};
+        String[][] planos = new String[planoDeSaude.size()][5];
         
         
         int i = 0;
@@ -82,6 +83,8 @@ public class PlanoDeSaudeDAO {
             planos[i][1] = p.getOperadora();
             planos[i][2] = p.getCategoria();
             planos[i][3] = p.getNumero();
+            DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            planos[i][4] = p.getValidade().format(formatDate);
             i++;
         }
         
