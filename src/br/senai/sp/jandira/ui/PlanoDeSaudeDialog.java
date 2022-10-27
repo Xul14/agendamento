@@ -8,60 +8,58 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
 public class PlanoDeSaudeDialog extends javax.swing.JDialog {
-    
+
     PlanoDeSaude planoDeSaude;
     private OperacaoEnum operacao;
 
     public PlanoDeSaudeDialog(java.awt.Frame parent,
             boolean modal,
             OperacaoEnum operacao) {
-        
+
         super(parent, modal);
-        
+
         initComponents();
         this.operacao = operacao;
         preencherTitulo();
-        
+
     }
-    
+
     public PlanoDeSaudeDialog(java.awt.Frame parent,
             boolean modal,
             PlanoDeSaude p,
             OperacaoEnum operacao) {
-        
+
         super(parent, modal);
         initComponents();
-        
+
         planoDeSaude = p;
         this.operacao = operacao;
-        
+
         preencherFormulario();
         preencherTitulo();
     }
-    
-    
-    private void preencherTitulo(){
-        
+
+    private void preencherTitulo() {
+
         labelTitulo.setText("  Plano de Saúde - " + operacao);
-        
-        if(operacao == OperacaoEnum.EDITAR){
-           labelTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/pencil.png")));
-        }else{
-           labelTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/plus.png"))); 
+
+        if (operacao == OperacaoEnum.EDITAR) {
+            labelTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/pencil.png")));
+        } else {
+            labelTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/plus.png")));
         }
-        
+
     }
-    
-    private void preencherFormulario(){
-        
+
+    private void preencherFormulario() {
+
         textFieldCodigo.setText(planoDeSaude.getCodigo().toString());
         textFieldOperadora.setText(planoDeSaude.getOperadora());
         textFieldCategoria.setText(planoDeSaude.getCategoria());
         textFieldNumero.setText(planoDeSaude.getNumero());
-        textFieldValidade.setText(planoDeSaude.getValidade().toString());
+        textFieldValidade.setText(planoDeSaude.getValidade().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -80,7 +78,7 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         labelNumero = new javax.swing.JLabel();
         textFieldNumero = new javax.swing.JTextField();
         labelValidade = new javax.swing.JLabel();
-        textFieldValidade = new javax.swing.JTextField();
+        textFieldValidade = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -163,8 +161,20 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         labelValidade.setText("Validade:");
         panelDealhesEspecialidades.add(labelValidade);
         labelValidade.setBounds(350, 180, 130, 20);
+
+        textFieldValidade.setColumns(8);
+        try {
+            textFieldValidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        textFieldValidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldValidadeActionPerformed(evt);
+            }
+        });
         panelDealhesEspecialidades.add(textFieldValidade);
-        textFieldValidade.setBounds(350, 200, 230, 30);
+        textFieldValidade.setBounds(350, 200, 140, 30);
 
         getContentPane().add(panelDealhesEspecialidades);
         panelDealhesEspecialidades.setBounds(20, 90, 600, 370);
@@ -183,47 +193,58 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
 
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
 
-        if(operacao == OperacaoEnum.ADICIONAR){
-            adicionar();
-        }else{
-            editar();
+        CharSequence cha = " ";
+  
+        if (textFieldOperadora.getText().isEmpty() || textFieldCategoria.getText().isEmpty() || textFieldNumero.getText().isEmpty() || textFieldValidade.getText().contains(cha) == true ){
+            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos!", "ERRO", JOptionPane.WARNING_MESSAGE);
+        } else {
+
+            if (operacao == OperacaoEnum.ADICIONAR) {
+                adicionar();
+            } else {
+                editar();
+            }
         }
+
 
     }//GEN-LAST:event_buttonSalvarActionPerformed
 
-    private void editar(){
+    private void textFieldValidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldValidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldValidadeActionPerformed
+
+    private void editar() {
         planoDeSaude.setOperadora(textFieldOperadora.getText());
         planoDeSaude.setCategoria(textFieldCategoria.getText());
         planoDeSaude.setNumero(textFieldNumero.getText());
         planoDeSaude.setValidade(LocalDate.parse(textFieldValidade.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        
+
         PlanoDeSaudeDAO.atualizar(planoDeSaude);
-        
+
         JOptionPane.showMessageDialog(null, "Plano de Saúde atualizado com sucesso!", "Plano de Saúde", JOptionPane.INFORMATION_MESSAGE);
-        
+
         dispose();
-        
+
     }
-    
-    private void adicionar(){
-        
+
+    private void adicionar() {
+
         PlanoDeSaude novoPlanoDeSaude = new PlanoDeSaude();
         novoPlanoDeSaude.setOperadora(textFieldOperadora.getText());
         novoPlanoDeSaude.setCategoria(textFieldCategoria.getText());
         novoPlanoDeSaude.setNumero(textFieldNumero.getText());
         novoPlanoDeSaude.setValidade(LocalDate.parse(textFieldValidade.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        
-       
+
         PlanoDeSaudeDAO.gravar(novoPlanoDeSaude);
-        
+
         JOptionPane.showMessageDialog(this,
                 "Plano de Saúde gravado com sucesso!",
                 "Plano de Saúde",
                 JOptionPane.INFORMATION_MESSAGE);
-        
+
         dispose();
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancelar;
@@ -240,6 +261,6 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
     private javax.swing.JTextField textFieldCodigo;
     private javax.swing.JTextField textFieldNumero;
     private javax.swing.JTextField textFieldOperadora;
-    private javax.swing.JTextField textFieldValidade;
+    private javax.swing.JFormattedTextField textFieldValidade;
     // End of variables declaration//GEN-END:variables
 }

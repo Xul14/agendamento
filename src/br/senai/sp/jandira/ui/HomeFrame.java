@@ -150,6 +150,11 @@ public class HomeFrame extends javax.swing.JFrame {
         buttonSair.setText("Sair");
         buttonSair.setToolTipText("Sair");
         buttonSair.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        buttonSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSairActionPerformed(evt);
+            }
+        });
         getContentPane().add(buttonSair);
         buttonSair.setBounds(730, 120, 100, 40);
 
@@ -269,6 +274,10 @@ public class HomeFrame extends javax.swing.JFrame {
        planoDeSaudePanel.setVisible(false);
        
     }//GEN-LAST:event_buttonHomeActionPerformed
+
+    private void buttonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSairActionPerformed
+       dispose();
+    }//GEN-LAST:event_buttonSairActionPerformed
 
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
