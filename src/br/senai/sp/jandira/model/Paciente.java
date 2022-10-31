@@ -4,77 +4,117 @@ import java.time.LocalDate;
 
 public class Paciente {
 
-	private String nome;
-	private LocalDate dataNascimento;
-	private String telefone;
-	private String rg;
-	private String cpf;
-	private String genero;
-	private PlanoDeSaude planoDeSaude;
-	private Endereco endereco;
+    private String nome;
+    private LocalDate dataNascimento;
+    private String telefone;
+    private String rg;
+    private String cpf;
+    private String genero;
+    private PlanoDeSaude planoDeSaude;
+    private Endereco endereco;
+    private Integer codigo;
+    private static int contador = 99;
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    //construtores
+    public Paciente() {
+        gerarCodigo();
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public Paciente(String nome,
+            LocalDate dataNascimento,
+            String telefone,
+            String rg,
+            String cpf
+    //            PlanoDeSaude planoDeSaude,Endereco endereco
+        ) {
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.telefone = telefone;
+        this.rg = rg;
+        this.cpf = cpf;
+        this.planoDeSaude = planoDeSaude;
+    }
 
-	public LocalDate getDataNascimento() {
-		return dataNascimento;
-	}
+    private void gerarCodigo() {
+        this.contador++;
+        this.codigo = contador;
+    }
 
-	public void setDataNascimento(LocalDate dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
+    //Métodos de acessos
+    public static int getContador() {
+        return contador;
+    }
 
-	public String getTelefone() {
-		return telefone;
-	}
+    public Integer getCodigo() {
+        return codigo;
+    }
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
+    }
 
-	public String getRg() {
-		return rg;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public void setRg(String rg) {
-		this.rg = rg;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public String getCpf() {
-		return cpf;
-	}
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
 
-	public String getGenero() {
-		return genero;
-	}
+    public String getTelefone() {
+        return telefone;
+    }
 
-	public void setGenero(String genero) {
-		this.genero = genero;
-	}
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 
-	public PlanoDeSaude getPlanoDeSaude() {
-		return planoDeSaude;
-	}
+    public String getRg() {
+        return rg;
+    }
 
-	public void setPlanoDeSaude(PlanoDeSaude planoDeSaude) {
-		this.planoDeSaude = planoDeSaude;
-	}
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
+    public String getCpf() {
+        return cpf;
+    }
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public PlanoDeSaude getPlanoDeSaude() {
+        return planoDeSaude;
+    }
+
+    public void setPlanoDeSaude(PlanoDeSaude planoDeSaude) {
+        this.planoDeSaude = planoDeSaude;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
 
 }
