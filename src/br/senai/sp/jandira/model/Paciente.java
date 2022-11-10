@@ -116,5 +116,9 @@ public class Paciente {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
+    
+//     public String getPacienteSeparadaPorPontoEVirgula(){
+////        return this.codigo + ";" + this.nome + ";" + this.descricao;
+//    }
 
 }

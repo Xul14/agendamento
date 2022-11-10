@@ -1,7 +1,9 @@
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.PacienteDAO;
+import br.senai.sp.jandira.model.OperacaoEnum;
 import br.senai.sp.jandira.model.Paciente;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 public class PacientePanel extends javax.swing.JPanel {
@@ -11,7 +13,7 @@ public class PacientePanel extends javax.swing.JPanel {
     public PacientePanel() {
         initComponents();
         PacienteDAO.criarListaDePacientes();
-//        preencherTabela();
+        preencherTabela();
         
     }
     
@@ -113,14 +115,14 @@ public class PacientePanel extends javax.swing.JPanel {
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
 
-//        if(getLinha() != -1){
-//            excluirEspecialidade();
-//        }else{
-//            JOptionPane.showMessageDialog(this,
-//                "Por favor, selecione a especialidade que você deseja excluir!",
-//                "Atenção",
-//                JOptionPane.WARNING_MESSAGE);
-//        }
+        if(getLinha() != -1){
+//            excluirPaciente;
+        }else{
+            JOptionPane.showMessageDialog(this,
+                "Por favor, selecione a especialidade que você deseja excluir!",
+                "Atenção",
+                JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
     private void editarPaciente(){
@@ -142,6 +144,30 @@ public class PacientePanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_buttonEditarActionPerformed
 
+    
+//    private void editarEspecialidade(){
+//       
+//        Paciente paciente = PacienteDAO.getEspecialidade(getCodigo());
+//        
+//        EspecialidadeDialog especialidadeDialog = new EspecialidadeDialog(null, true, paciente, OperacaoEnum.EDITAR);
+//        especialidadeDialog.setVisible(true);
+//        preencherTabela(); 
+//    }
+//    
+//    private void excluirEspecialidade(){
+//        
+//        int resposta = JOptionPane.showConfirmDialog(this,
+//                "Você confirma a exclusão?",
+//                "Atenção", 
+//                JOptionPane.YES_NO_OPTION,
+//                JOptionPane.QUESTION_MESSAGE);
+//        
+//        if(resposta == 0){
+//            EspecialidadeDAO.excluir(getCodigo());
+//            preencherTabela();
+//        }
+//    }
+    
     private void buttonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarActionPerformed
 
 //        EspecialidadeDialog especialidadeDialog = new EspecialidadeDialog(null, true, OperacaoEnum.ADICIONAR);

@@ -15,6 +15,14 @@ public class Especialidade {
         gerarCodigo();
     }
 
+    public Especialidade(Integer codigo, String nome, String descricao) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.codigo = codigo;
+        this.contador = codigo;
+    }
+    
+    
     public Especialidade(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
@@ -67,6 +75,10 @@ public class Especialidade {
 
     public String getDescricao() {
         return descricao;
+    }
+    
+    public String getEspecialidadeSeparadaPorPontoEVirgula(){
+        return this.codigo + ";" + this.nome + ";" + this.descricao;
     }
 
 }

@@ -1,13 +1,24 @@
 package br.senai.sp.jandira.dao;
 
 import br.senai.sp.jandira.model.PlanoDeSaude;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
 public class PlanoDeSaudeDAO {
+    
+    private final static String URL = "C:\\Users\\22282188\\Java-Arquivos\\PlanoDeSaude.txt";
+    private final static Path PATH = Paths.get(URL);
     
     private static ArrayList<PlanoDeSaude> planoDeSaude = new ArrayList<>();
     
@@ -27,6 +38,19 @@ public class PlanoDeSaudeDAO {
     
     public static void gravar(PlanoDeSaude p){
         planoDeSaude.add(p);
+        
+        try {
+            BufferedWriter escritor = Files.newBufferedWriter(
+                    PATH, 
+                    StandardOpenOption.APPEND, 
+                    StandardOpenOption.WRITE);
+            escritor.write(p.getPlanoDeSaudeSeparadoPorPontoEVirgula());
+            escritor.newLine();
+            escritor.close();
+        } catch (IOException erro) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro!");
+        }
+        
     }
     
     public static void excluir(Integer codigo){
@@ -52,21 +76,32 @@ public class PlanoDeSaudeDAO {
     
     public static void criarPlanosDeSaude(){
         
-        PlanoDeSaude p1 = new PlanoDeSaude("Porto Seguro", "Basic", "6451-01", LocalDate.of(2022, 10, 22));
-        PlanoDeSaude p2 = new PlanoDeSaude("Unimed", "Basic", "7563-89",LocalDate.of(2022, 10, 22) );
-        PlanoDeSaude p3 = new PlanoDeSaude("Notredame", "Classic", "8946-16", LocalDate.of(2022, 10, 22));
-        PlanoDeSaude p4 = new PlanoDeSaude("Bradesco", "Gold", "4697-12", LocalDate.of(2022, 10, 22));
-        PlanoDeSaude p5 = new PlanoDeSaude("Cedime", "Basic", "3164-78", LocalDate.of(2022, 10, 22));
-        PlanoDeSaude p6 = new PlanoDeSaude("Unimed", "Premium", "5094-67", LocalDate.of(2022, 10, 22));
-        PlanoDeSaude p7 = new PlanoDeSaude("Amil", "Basic", "2106-64", LocalDate.of(2022, 10, 22));
+         try {
+             BufferedReader leitor = Files.newBufferedReader(PATH);
+            
+            String linha = leitor.readLine();
+            
+            while(linha != null){
+            //Transformar os dados da linha em uma especialidade
+            String[] vetor = linha.split(";");
+            PlanoDeSaude p = new PlanoDeSaude( vetor[1], vetor[2], vetor[3], LocalDate.parse(vetor[4]), Integer.valueOf(vetor[0]));
+            
+            
+            //Guardar a especialidade na lista
+            planoDeSaude.add(p);
+            
+            //Ler a proxima linha
+            linha = leitor.readLine();
+            
+            }
+            
+            
+            leitor.close();
+            
+        } catch (IOException erro) {
+           JOptionPane.showMessageDialog(null, "Ocorreu um erro ao ler o arquivo!");
+        }
         
-        planoDeSaude.add(p1);
-        planoDeSaude.add(p2);
-        planoDeSaude.add(p3);
-        planoDeSaude.add(p4);
-        planoDeSaude.add(p5);
-        planoDeSaude.add(p6);
-        planoDeSaude.add(p7);
         
     }
     
