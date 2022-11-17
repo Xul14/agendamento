@@ -2,50 +2,91 @@ package br.senai.sp.jandira.model;
 
 public class Medico {
 
-	private String nome;
-	private Especialidade[] especialidade;
-	private String email;
-	private String crm;
-	private String telefone;
+    private String nome;
+    private Especialidade[] especialidade;
+    private String email;
+    private String crm;
+    private String telefone;
+    private static int contador = 99;
+    private Integer codigo;
 
-	public String getTelefone() {
-		return telefone;
-	}
+    //Construtor
+    public Medico(String nome) {
+        this.nome = nome;
+        gerarCodigo();
+    }
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+    public Medico(
+            Integer codigo,
+            String nome,
+            String email,
+            String crm,
+            String telefone) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.email = email;
+        this.crm = crm;
+        this.telefone = telefone;
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public Medico() {
+        gerarCodigo();
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    private void gerarCodigo() {
+        this.contador++;
+        this.codigo = contador;
+    }
 
-	public Especialidade[] getEspecialidade() {
-		return especialidade;
-	}
+    public String getTelefone() {
+        return telefone;
+    }
 
-	public void setEspecialidade(Especialidade[] especialidade) {
-		this.especialidade = especialidade;
-	}
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public String getCrm() {
-		return crm;
-	}
+    public Especialidade[] getEspecialidade() {
+        return especialidade;
+    }
 
-	public void setCrm(String crm) {
-		this.crm = crm;
-	}
+    public void setEspecialidade(Especialidade[] especialidade) {
+        this.especialidade = especialidade;
+    }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCrm() {
+        return crm;
+    }
+
+    public void setCrm(String crm) {
+        this.crm = crm;
+    }
+
+    public Integer getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
+    }
+
+//    public String getMedicoSeparadoPorPontoEVirgula(){
+//        return this.codigo + ";" + this.nome + ";" + this.descricao;
+//    }
 }

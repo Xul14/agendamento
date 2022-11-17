@@ -3,6 +3,7 @@ package br.senai.sp.jandira.dao;
 import br.senai.sp.jandira.model.PlanoDeSaude;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,7 +19,9 @@ import javax.swing.table.DefaultTableModel;
 public class PlanoDeSaudeDAO {
     
     private final static String URL = "C:\\Users\\22282188\\Java-Arquivos\\PlanoDeSaude.txt";
+    private final static String URL_TEMP = "C:\\Users\\22282188\\Java-Arquivos\\PlanoDeSaude-temp.txt";
     private final static Path PATH = Paths.get(URL);
+    private final static Path PATH_TEMP = Paths.get(URL_TEMP);
     
     private static ArrayList<PlanoDeSaude> planoDeSaude = new ArrayList<>();
     
@@ -55,21 +58,60 @@ public class PlanoDeSaudeDAO {
     
     public static void excluir(Integer codigo){
         for(PlanoDeSaude p : planoDeSaude){
-            if(codigo == p.getCodigo()){
+            if(p.getCodigo().equals(codigo)){
                 planoDeSaude.remove(p);
                 break;
             }
         }
+        
+        atualizarArquivo();
+        
+    }
+    
+    public static void atualizarArquivo(){
+    
+        File arquivoAtual = new File(URL);
+        File arquivoTemp = new File(URL_TEMP);
+        
+        try {
+            arquivoTemp.createNewFile();
+            
+            BufferedWriter bwTemp = Files.newBufferedWriter(
+                    PATH_TEMP,
+                    StandardOpenOption.APPEND,
+                    StandardOpenOption.WRITE);
+
+            //Iterar na lista para adicionar aa especialidades no arquivo temporário
+            //exceto o registro qque não queremos mais
+            for(PlanoDeSaude p : planoDeSaude){
+                bwTemp.write(p.getPlanoDeSaudeSeparadoPorPontoEVirgula());
+                bwTemp.newLine();
+            }
+            
+            bwTemp.close();
+            
+            //Excluir arquivo atual
+            arquivoAtual.delete();
+            
+            //Renomear o arquivo temporário
+            arquivoTemp.renameTo(arquivoAtual);
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
     }
     
     public static void atualizar(PlanoDeSaude atualizado){
         for(PlanoDeSaude p : planoDeSaude){
-            if(atualizado.getCodigo() == p.getCodigo()){
+            if(p.getCodigo().equals(atualizado.getCodigo())){
                 int posicao = planoDeSaude.indexOf(p);
                 planoDeSaude.set(posicao, atualizado);
                 break;
             }
         }
+        
+        atualizarArquivo();
     }
     
     //Planos de saúde

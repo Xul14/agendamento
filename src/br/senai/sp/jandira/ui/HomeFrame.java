@@ -6,6 +6,7 @@ public class HomeFrame extends javax.swing.JFrame {
     
     private EspecialidadesPanel especialidadesPanel;
     private PlanoDeSaudePanel planoDeSaudePanel;
+    private MedicoPanel medicoPanel;
     
     private final int POS_X = 30;
     private final int POS_Y = 190;
@@ -248,7 +249,15 @@ public class HomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonPlanoDeSaudeActionPerformed
 
     private void buttonMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMedicosActionPerformed
-        // TODO add your handling code here:
+        buttonMedicos.setBackground(new java.awt.Color(153, 153, 255));
+        buttonHome.setBackground(new java.awt.Color(204, 204, 255));
+        buttonEspecialidades.setBackground(new java.awt.Color(204, 204, 255));
+        buttonPlanoDeSaude.setBackground(new java.awt.Color(204, 204, 255));
+        
+        panelHome.setVisible(false);
+//        medicoPanel.setVisible(true);
+        planoDeSaudePanel.setVisible(false);
+        especialidadesPanel.setVisible(false);
     }//GEN-LAST:event_buttonMedicosActionPerformed
 
     private void buttonEspecialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEspecialidadesActionPerformed
