@@ -48,7 +48,7 @@ public class MedicoDAO {
                     PATH,
                     StandardOpenOption.APPEND,
                     StandardOpenOption.WRITE);
-//            escritor.write(m.getMedicoSeparadoPorPontoEVirgula());
+            escritor.write(m.getMedicoSeparadoPorPontoEVirgula());
             escritor.newLine();
             escritor.close();
         } catch (IOException erro) {
