@@ -164,10 +164,11 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
 
         textFieldValidade.setColumns(8);
         try {
-            textFieldValidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            textFieldValidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        textFieldValidade.setText("/  /");
         textFieldValidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldValidadeActionPerformed(evt);
