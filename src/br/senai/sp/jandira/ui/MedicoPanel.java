@@ -139,8 +139,7 @@ public class MedicoPanel extends javax.swing.JPanel {
 
     private void buttonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarActionPerformed
 
-//        MedicoDAO medicoDialog = new MedicoDAO(null, true, OperacaoEnum.ADICIONAR);
-        MedicoDialog medicoDialog = new MedicoDialog(null, true, OperacaoEnum.EDITAR);
+        MedicoDialog medicoDialog = new MedicoDialog(null, true, OperacaoEnum.ADICIONAR);
         medicoDialog.setVisible(true);
         preencherTabela();
     }//GEN-LAST:event_buttonAdicionarActionPerformed

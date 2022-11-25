@@ -253,12 +253,25 @@ public class MedicoDialog extends javax.swing.JDialog {
 
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
 
+        CharSequence cha = " ";
+//  
+//        if (textField.getText().isEmpty() || textFieldCategoria.getText().isEmpty() || textFieldNumero.getText().isEmpty() || textFieldValidade.getText().contains(cha) == true ){
+//            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos!", "ERRO", JOptionPane.WARNING_MESSAGE);
+//        } else {
+//
+//            if (operacao == OperacaoEnum.ADICIONAR) {
+//                adicionar();
+//            } else {
+//                editar();
+//            }
+//        }
+        
         if(operacao == OperacaoEnum.ADICIONAR){
             adicionar();
         }else{
             editar();
-        }
-
+        } 
+        dispose();
     }//GEN-LAST:event_buttonSalvarActionPerformed
 
     private void buttonVermelhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVermelhoActionPerformed
