@@ -233,7 +233,7 @@ public class MedicoDialog extends javax.swing.JDialog {
         buttonVerde.setBounds(260, 350, 50, 50);
 
         try {
-            textFieldDataDeNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            textFieldDataDeNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -255,23 +255,18 @@ public class MedicoDialog extends javax.swing.JDialog {
 
         CharSequence cha = " ";
 //  
-//        if (textField.getText().isEmpty() || textFieldCategoria.getText().isEmpty() || textFieldNumero.getText().isEmpty() || textFieldValidade.getText().contains(cha) == true ){
-//            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos!", "ERRO", JOptionPane.WARNING_MESSAGE);
-//        } else {
-//
-//            if (operacao == OperacaoEnum.ADICIONAR) {
-//                adicionar();
-//            } else {
-//                editar();
-//            }
-//        }
-        
-        if(operacao == OperacaoEnum.ADICIONAR){
-            adicionar();
-        }else{
-            editar();
-        } 
-        dispose();
+        if (textFieldNome.getText().isEmpty() || textFieldCrm.getText().isEmpty() || textFieldTelefone.getText().isEmpty() || textFieldEmail.getText().isEmpty()|| textFieldDataDeNascimento.getText().contains(cha) == true ){
+            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos!", "ERRO", JOptionPane.WARNING_MESSAGE);
+        } else {
+
+            if (operacao == OperacaoEnum.ADICIONAR) {
+                adicionar();
+            } else {
+                editar();
+            }
+            dispose();
+        }
+
     }//GEN-LAST:event_buttonSalvarActionPerformed
 
     private void buttonVermelhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVermelhoActionPerformed
@@ -294,6 +289,11 @@ public class MedicoDialog extends javax.swing.JDialog {
         medico.setDataNascimento(LocalDate.parse(textFieldDataDeNascimento.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 //        medico.setEspecialidade(listEspecialidades.getText());
 //        medico.setEspecialidade(listEspecialidadesMedico.getText());
+
+        MedicoDAO.atualizar(medico);
+        
+        JOptionPane.showMessageDialog(null, "Médico atualizado com sucesso!", "Médicos", JOptionPane.INFORMATION_MESSAGE);
+
     
     }
     

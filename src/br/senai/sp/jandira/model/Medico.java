@@ -21,12 +21,12 @@ public class Medico {
 
     public Medico(
             Integer codigo,
-            String nome,
-            String email,
             String crm,
+            String nome,
             String telefone,
+            String email,
             LocalDate dataNascimento
-//            Especialidade especialidade
+//          Especialidade especialidade
             ) {
         this.codigo = codigo;
         this.nome = nome;
@@ -34,7 +34,9 @@ public class Medico {
         this.crm = crm;
         this.telefone = telefone;
         this.dataNascimento = dataNascimento;
-//        this.especialidade = this.especialidade;
+//      this.especialidade = this.especialidade;
+        gerarCodigo();
+    
     }
 
     public Medico() {
@@ -104,11 +106,15 @@ public class Medico {
   
     public String getMedicoSeparadoPorPontoEVirgula(){
         return this.codigo + ";" +
-               this.nome + ";" +
-               this.email + ";" + 
                this.crm + ";" + 
-               this.especialidade + ";" + 
-               this.dataNascimento + ";" + 
-               this.telefone;
+               this.nome + ";" +
+               this.telefone + ";" +
+               this.email + ";" + 
+               this.dataNascimento 
+//                + ";" + 
+//               this.especialidade 
+                ;
+                
+               
     }
 }
