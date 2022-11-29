@@ -163,10 +163,6 @@ public class MedicoDAO {
         DefaultTableModel model = new DefaultTableModel(dados, titulos);
         return model;
     }
-    
-//    public static DefaultListModel<Especialidade> 
-    
-    
-    
+
     
 }

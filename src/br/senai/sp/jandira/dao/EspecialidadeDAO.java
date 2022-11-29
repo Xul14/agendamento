@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -165,4 +166,15 @@ public class EspecialidadeDAO {
         return model;
     }
 
+    
+    public static DefaultListModel<Especialidade> getListaEspecialidade(){
+        DefaultListModel<Especialidade> listaEspecialidade = new DefaultListModel<>();
+        for(Especialidade percorrer : getEspecialidades()){
+          listaEspecialidade.addElement(percorrer);
+          listaEspecialidade.toString();
+        }
+        return listaEspecialidade;
+    
+    }
+    
 }
