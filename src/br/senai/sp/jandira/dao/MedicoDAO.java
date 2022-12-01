@@ -119,6 +119,19 @@ public class MedicoDAO {
 
     }
     
+    public static ArrayList<Especialidade> separarEspecialidade(String linha){
+       String[] vetor = linha.split(";");
+       int codigoEspecialidade = 6;
+       
+       ArrayList<Especialidade> especialidades = new ArrayList<>();
+       
+       while(vetor.length > codigoEspecialidade){
+           especialidades.add(EspecialidadeDAO.getEspecialidade(Integer.valueOf(vetor[codigoEspecialidade])));
+           codigoEspecialidade++;
+       }
+       return especialidades;
+    }
+    
      public static void criarListaDeMedicos() {
 
         try {
@@ -129,7 +142,14 @@ public class MedicoDAO {
             while (linha != null) {
                 
                 String[] vetor = linha.split(";");
-                Medico m = new Medico(Integer.valueOf(vetor[0]), vetor[1], vetor[2], vetor[3], vetor[4],LocalDate.parse(vetor[5]));
+                Medico m = new Medico(
+                        Integer.valueOf(vetor[0]),
+                        vetor[1],
+                        vetor[2],
+                        vetor[3],
+                        vetor[4],
+                        LocalDate.parse(vetor[5]),
+                        separarEspecialidade(linha));
 
 
                 medicos.add(m);
@@ -146,6 +166,25 @@ public class MedicoDAO {
         }
 
     }
+     
+     public static DefaultListModel<Especialidade> getEspecialidadesModel(){
+         
+        DefaultListModel<Especialidade> especialidadeLista = new DefaultListModel<>();
+        
+        try {
+            BufferedReader leitor = Files.newBufferedReader(PATH);
+            String linha = leitor.readLine();
+            
+            for(Especialidade e : separarEspecialidade(linha)){
+            especialidadeLista.addElement(e);
+            }
+            leitor.close();
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro!");
+        }
+        
+        return especialidadeLista;  
+     }
 
     public static DefaultTableModel getMedicosModel() {
         String[] titulos = {"CÓDIGO", "CRM", "NOME DO MÉDICO", "TELEFONE"};

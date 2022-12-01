@@ -1,11 +1,12 @@
 package br.senai.sp.jandira.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Medico {
 
     private String nome;
-    private Especialidade[] especialidade;
+    private ArrayList<Especialidade> especialidade;
     private String email;
     private String crm;
     private String telefone;
@@ -25,8 +26,8 @@ public class Medico {
             String nome,
             String telefone,
             String email,
-            LocalDate dataNascimento
-//          Especialidade especialidade
+            LocalDate dataNascimento,
+            ArrayList<Especialidade> especialidade
             ) {
         this.codigo = codigo;
         this.nome = nome;
@@ -34,7 +35,7 @@ public class Medico {
         this.crm = crm;
         this.telefone = telefone;
         this.dataNascimento = dataNascimento;
-//      this.especialidade = this.especialidade;
+        this.especialidade = especialidade;
         gerarCodigo();
     
     }
@@ -64,13 +65,14 @@ public class Medico {
         this.nome = nome;
     }
 
-    public Especialidade[] getEspecialidade() {
+    public ArrayList<Especialidade> getEspecialidade() {
         return especialidade;
     }
 
-    public void setEspecialidade(Especialidade[] especialidade) {
+    public void setEspecialidade(ArrayList<Especialidade> especialidade) {
         this.especialidade = especialidade;
     }
+    
 
     public String getEmail() {
         return email;
@@ -110,11 +112,17 @@ public class Medico {
                this.nome + ";" +
                this.telefone + ";" +
                this.email + ";" + 
-               this.dataNascimento 
-//                + ";" + 
-//               this.especialidade 
-                ;
-                
-               
+               this.dataNascimento  + ";" + 
+               listToString(this.especialidade);
+    
     }
+    
+    public String listToString(ArrayList<Especialidade> lista){
+        ArrayList<String> codigoEspecialidade = new ArrayList<>();
+        for(Especialidade e : lista){
+            codigoEspecialidade.add(e.getCodigo().toString());
+        }
+        return String.join(";", codigoEspecialidade);
+    }
+    
 }
